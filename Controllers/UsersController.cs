@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TaskManagementSystem.Application;
 using TaskManagementSystem.Dto;
+using TaskManagementSystem.Data; // Предполагается, что у вас есть модель User
 
 namespace TaskManagementSystem.Controllers
 {
@@ -11,9 +14,12 @@ namespace TaskManagementSystem.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UsersController(IUserService userService)
+        private readonly ApplicationDbContext _context;
+
+        public UsersController(IUserService userService, ApplicationDbContext context)
         {
             _userService = userService;
+            _context = context;
         }
 
         [HttpPost("register")]
@@ -27,7 +33,6 @@ namespace TaskManagementSystem.Controllers
             return BadRequest(result.Message);
         }
 
-        // POST api/users/login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
@@ -39,11 +44,10 @@ namespace TaskManagementSystem.Controllers
             return Unauthorized("Invalid credentials");
         }
 
-        // GET api/users/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(long id)
         {
-            var user = await _userService.GetUserByIdAsync(id);
+            var user = await _context.Users.FindAsync(id);
             if (user != null)
             {
                 return Ok(user);
@@ -51,13 +55,54 @@ namespace TaskManagementSystem.Controllers
             return NotFound();
         }
 
-        // GET api/users
-        [HttpGet]
-        public async Task<IActionResult> GetAllUsers()
+        [HttpGet("with-email")]
+        public IActionResult GetUsersWithEmail()
         {
-            var users = await _userService.GetAllUsersAsync();
-            return Ok(users);
+            var usersWithEmail = _context.Users
+                .Where(u => !string.IsNullOrEmpty(u.Email))
+                .Select(u => new { u.Id, u.Username, u.Email })
+                .ToList();
+
+            return Ok(usersWithEmail);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(long id, [FromBody] UserDto userDto)
+        {
+            if (id != userDto.Id)
+            {
+                return BadRequest("User ID mismatch");
+            }
+
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Username = userDto.Name;
+            user.Email = userDto.Email;
+            // Обновите другие поля по мере необходимости
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // 204 No Content
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(long id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // 204 No Content
+        }
     }
 }

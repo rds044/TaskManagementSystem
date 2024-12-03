@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskManagementSystem.Application\TaskManagementSystem.Application.csproj" />
+    <ProjectReference Include="..\TaskManagementSystem.Data\TaskManagementSystem.Data.csproj" />
     <ProjectReference Include="..\TaskManagementSystem.DTO\TaskManagementSystem.Dto.csproj" />
   </ItemGroup>
 

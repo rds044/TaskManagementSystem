@@ -5,6 +5,7 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Api", "TaskManagementSystem.Api.csproj", "{843D066A-E806-4C8A-8F4A-09CB61115B53}"
 	ProjectSection(ProjectDependencies) = postProject
+		{444F2F76-E4EE-420E-8834-1E1286E55D0F} = {444F2F76-E4EE-420E-8834-1E1286E55D0F}
 		{71E670E4-5D91-407B-9153-7B6A5715277B} = {71E670E4-5D91-407B-9153-7B6A5715277B}
 		{DD1F6EB7-48D9-4143-9DE5-CEFE456867F2} = {DD1F6EB7-48D9-4143-9DE5-CEFE456867F2}
 	EndProjectSection
@@ -17,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Applic
 	ProjectSection(ProjectDependencies) = postProject
 		{71E670E4-5D91-407B-9153-7B6A5715277B} = {71E670E4-5D91-407B-9153-7B6A5715277B}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Data", "..\TaskManagementSystem.Data\TaskManagementSystem.Data.csproj", "{444F2F76-E4EE-420E-8834-1E1286E55D0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +39,10 @@ Global
 		{DD1F6EB7-48D9-4143-9DE5-CEFE456867F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD1F6EB7-48D9-4143-9DE5-CEFE456867F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD1F6EB7-48D9-4143-9DE5-CEFE456867F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{444F2F76-E4EE-420E-8834-1E1286E55D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{444F2F76-E4EE-420E-8834-1E1286E55D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{444F2F76-E4EE-420E-8834-1E1286E55D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{444F2F76-E4EE-420E-8834-1E1286E55D0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +51,7 @@ Global
 		{843D066A-E806-4C8A-8F4A-09CB61115B53} = {C27AF812-1092-4C41-BFC3-123CC313A53F}
 		{71E670E4-5D91-407B-9153-7B6A5715277B} = {C27AF812-1092-4C41-BFC3-123CC313A53F}
 		{DD1F6EB7-48D9-4143-9DE5-CEFE456867F2} = {C27AF812-1092-4C41-BFC3-123CC313A53F}
+		{444F2F76-E4EE-420E-8834-1E1286E55D0F} = {C27AF812-1092-4C41-BFC3-123CC313A53F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9982C76B-86AF-49FD-9595-3A9A4F9F0EC5}

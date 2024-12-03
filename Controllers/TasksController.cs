@@ -66,22 +66,6 @@ namespace TaskManagementSystem.Api.Controllers
                 return NoContent();
             }
             return NotFound();
-        }
-
-        // GET api/tasks/status/{status}
-        [HttpGet("status/{status}")]
-        public async Task<IActionResult> GetTasksByStatus(string status)
-        {
-            var tasks = await _taskService.GetTasksByStatusAsync(status);
-            return Ok(tasks);
-        }
-
-        // GET api/tasks/user/{userId}
-        [HttpGet("user/{userId}")]
-        public async Task<IActionResult> GetTasksByUser(int userId)
-        {
-            var tasks = await _taskService.GetTasksByUserAsync(userId);
-            return Ok(tasks);
-        }
+        }       
     }
 }

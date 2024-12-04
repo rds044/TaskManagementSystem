@@ -27,7 +27,6 @@ namespace TaskManagementSystem
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();
